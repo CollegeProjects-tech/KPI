@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     if(this.auth.isLoggedIn()){
       this.router.navigate(['authority']);
+      // this.router.navigate(['staff']);
     }
     // if (this.isLocalStorageAvailable()) {
     //   if (!localStorage.getItem('username')) {
@@ -89,6 +90,7 @@ export class LoginComponent implements OnInit {
 
     if(this.res.status == "success"){
       this.router.navigate(['authority']);
+      // this.router.navigate(['staff']);
     }
     else
     {
