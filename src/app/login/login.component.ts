@@ -26,15 +26,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if(this.auth.isLoggedIn()){
-      this.router.navigate(['authority']);
-      // this.router.navigate(['staff']);
+      // this.router.navigate(['authority']);
+      this.router.navigate(['staff']);
     }
     // if (this.isLocalStorageAvailable()) {
     //   if (!localStorage.getItem('username')) {
     //     localStorage.setItem('username', 'Atharv');
     //     localStorage.setItem('password', this.encryptPassword('Atharv123'));
     //     localStorage.setItem('usertype', 'admin');
-        
+
     //   }
     // }
   }
@@ -89,13 +89,13 @@ export class LoginComponent implements OnInit {
     this.res = this.auth.login(this.loginObj);
 
     if(this.res.status == "success"){
-      this.router.navigate(['authority']);
-      // this.router.navigate(['staff']);
+      // this.router.navigate(['authority']);
+      this.router.navigate(['staff']);
     }
     else
     {
       alert("Not Found");
-      
+
     }
     console.log(this.res);
   }
