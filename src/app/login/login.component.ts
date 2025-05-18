@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     //     localStorage.setItem('username', 'Atharv');
     //     localStorage.setItem('password', this.encryptPassword('Atharv123'));
     //     localStorage.setItem('usertype', 'admin');
-        
+
     //   }
     // }
   }
@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit {
     else
     {
       alert("Not Found");
-      
+
     }
     console.log(this.res);
   }
