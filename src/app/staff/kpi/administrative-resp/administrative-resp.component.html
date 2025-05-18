@@ -3,47 +3,43 @@
         <div class="card">
             <div class="card-body demo-vertical-spacing demo-only-element">
                 <h5 class="card-header">ADMINISTRATIVE RESPONSIBILITY</h5>
-                <div class="form-floating form-floating-outline mb-6">
+                <form [formGroup]="data" (ngSubmit)="submit(data.value)">
+
+
+                <!-- <div class="form-floating form-floating-outline mb-6">
                     <input type="email" class="form-control" id="exampleFormControlInput1"
-                        placeholder="name@example.com" />
+                        placeholder="name@example.com" required/>
                     <label for="exampleFormControlInput1">Email Autoselect / default user's</label>
-                </div>
-                
+                </div> -->
+
                 <div class="form-floating form-floating-outline mb-6">
-                    <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                        <option selected>select Option</option>
-                        <!-- <option value="1">Publications in national Conference</option>
-                        <option value="2">Publications in International Conference</option>
-                        <option value="3">Publications in International Journal [Science Direct / IEEE /
-                            Elsevier]</option>
-                        <option value="4">National Conference Arranged</option>
-                        <option value="5">International Conference Arranged </option>
-                        <option value="6">Publications in Books / Book Chapters </option>
-                        <option value="7">Patent filed </option>
-                        <option value="8">Books Published </option>
-                        <option value="9">Your Active Participation in Establishing Incubation Centre </option> -->
+                    <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" formControlName="selected_option" required>
+                        <option value="" selected disabled>select Option</option>
+                        <option value="College Cells Handled [Centrally]">College Cells Handled [Centrally]</option>
+                        <option value="College Cells Handled [Department]">College Cells Handled [Department]</option>
+                        <option value="NAAC / NBA / Work Handled / Criteria">NAAC / NBA / Work Handled / Criteria</option>
+                        <option value="Your Presence on the Other Colleges Body = 2">Your Presence on the Other Colleges Body = 2</option>
+                        <option value="Your Active Participation in Establishing Start-Ups">Your Active Participation in Establishing Start-Ups</option>
+
+
                     </select>
                     <label for="exampleFormControlSelect1">Select Option</label>
                 </div>
 
                 <div class="form-floating form-floating-outline mb-6">
-                    <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                        <option selected>select Sem</option>
+                    <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" formControlName="selected_sem" required>
+                        <option value="" selected disabled>select Sem</option>
                         <option value="1">I</option>
                         <option value="2">II</option>
-                        <!-- <option value="3">III</option>
-                        <option value="4">IV</option>
-                        <option value="5">V</option>
-                        <option value="6">VI</option> -->
                     </select>
                     <label for="exampleFormControlSelect1">Select Sem</label>
                 </div>
 
                 <div class="form-floating form-floating-outline mb-6">
-                    <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                        <option selected>select Year</option>
-                        <option value="1">2024-25</option>
-                        <option value="3">2025-26</option>
+                    <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" formControlName="selected_year" required>
+                        <option value="" selected disabled>select Year</option>
+                        <option value="2024-25">2024-25</option>
+                        <option value="2025-26">2025-26</option>
                     </select>
                     <label for="exampleFormControlSelect1">Select Year</label>
                 </div>
@@ -53,7 +49,7 @@
                         <h2 class="accordion-header" id="headingOne">
                             <button type="button" class="accordion-button" data-bs-toggle="collapse"
                                 data-bs-target="#accordionOne" aria-expanded="true" aria-controls="accordionOne">
-                                <h4>"Selected Topic"</h4>
+                                <h4>1.Publications in national Conference</h4>
                             </button>
                         </h2>
 
@@ -61,30 +57,72 @@
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <h5 class="card-header">Detailed Data</h5>
-                                <div class="mt-2 mb-4">
+                                <!-- <div class="mt-2 mb-4">
                                     <label for="largeInput" class="form-label">Input Title</label>
                                     <input id="largeInput" class="form-control form-control-lg" type="text"
                                         placeholder="Title" />
-                                </div>
+                                </div> -->
                                 <div class="form-floating form-floating-outline mb-6">
                                     <textarea class="form-control h-px-200" id="exampleFormControlTextarea1"
-                                        placeholder="Enter details"></textarea>
-                                    <label for="exampleFormControlTextarea1">TextArea for details</label>
+                                        placeholder="Enter details" formControlName="details" required></textarea>
+                                    <label for="exampleFormControlTextarea1">Enter Details</label>
                                 </div>
                                 <label for="largeInput" class="form-label">Attach PDF</label>
                                 <div class="input-group">
-                                    <input type="file" class="form-control" id="inputGroupFile02" />
+                                    <input type="file" class="form-control" id="inputGroupFile02"  (change)="onFileChange($event)" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"  required />
                                     <label class="input-group-text" for="inputGroupFile02">Upload</label>
                                 </div>
                                 <div class="demo-inline-spacing">
-                                    <button type="button" class="btn btn-info">Submit</button>
+                                    <button type="submit" class="btn btn-info">Submit</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                </form>
             </div>
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="card">
+        <h5 class="card-header">Test Table</h5>
+        <div class="table-responsive text-nowrap">
+          <table class="table">
+            <thead class="table-dark">
+              <tr>
+                <th>Sr.No</th>
+                <th>Option</th>
+                <th>Details</th>
+                <th>File</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+              <tr *ngFor="let data of Administrativeres;let i = index">
+                <td>{{i + 1}}</td>
+                <td><i class="ri-suitcase-2-line ri-22px text-danger me-4"></i><span>{{data.selected_option}}</span></td>
+                <td>{{data.details}}</td>
+                <td><a class="badge rounded-pill bg-label-primary me-1" (click)="download(data.file_path)">{{getOriginalFileName(data.file_path) }}</a></td>
+                <td>
+                  <div class="dropdown">
+                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                      <i class="ri-more-2-line"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="javascript:void(0);"
+                        ><i class="ri-pencil-line me-1"></i> Edit</a
+                      >
+                      <a class="dropdown-item" href="javascript:void(0);"
+                        ><i class="ri-delete-bin-6-line me-1"></i> Delete</a
+                      >
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+</div>
         </div>
     </div>
 </div>

@@ -105,7 +105,7 @@
                 <td>{{i + 1}}</td>
                 <td><i class="ri-suitcase-2-line ri-22px text-danger me-4"></i><span>{{data.selected_option}}</span></td>
                 <td>{{data.details}}</td>
-                <td><span class="badge rounded-pill bg-label-primary me-1" (click)="download(data.file_path)">{{getOriginalFileName(data.file_path) }}</span></td>
+                <td><a class="badge rounded-pill bg-label-primary me-1" (click)="download(data.file_path)">{{getOriginalFileName(data.file_path) }}</a></td>
                 <td>
                   <div class="dropdown">
                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
