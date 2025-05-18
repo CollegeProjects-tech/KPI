@@ -15,7 +15,9 @@ export const routes: Routes = [
     // canActivate:[authGuard],
     path: 'admin/landing',
     loadComponent: () =>
-      import('../app/admin/landing/landing.component').then(m => m.LandingComponent)
+      import('../app/admin/landing/landing.component').then(m => m.LandingComponent),
+      loadChildren:() => import('../app/admin/admin.routes').then(m => m.ADMIN_ROUTES)
+  
   },
   {
     // canActivate:[authGuard],

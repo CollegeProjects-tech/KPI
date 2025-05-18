@@ -211,16 +211,17 @@
             </li> -->
           </ul>
         </li>
-        <!-- Extended components -->
+
+        <!-- Teacher Start -->
         <li class="menu-item">
           <a href="javascript:void(0)" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons ri-radio-button-line"></i>
-            <div data-i18n="Extended UI">Extra</div>
+            <div data-i18n="Extended UI">Teacher</div>
           </a>
           <ul class="menu-sub">
-            <li class="menu-item">
-              <a href="#" class="menu-link">
-                <div data-i18n="Perfect Scrollbar">Options</div>
+            <li *ngIf="usertype=='admin'" class="menu-item" routerLinkActive="active">
+              <a routerLink="add-teacher" class="menu-link">
+                <div data-i18n="teacher">Add Teacher</div>
               </a>
             </li>
             <li class="menu-item">
@@ -230,6 +231,8 @@
             </li>
           </ul>
         </li>
+         <!-- Teacher END! -->
+
         <li class="menu-item">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons ri-radio-button-line"></i>
