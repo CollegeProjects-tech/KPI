@@ -6,11 +6,7 @@
                 <form [formGroup]="data" (ngSubmit)="submit(data.value)">
 
 
-                <!-- <div class="form-floating form-floating-outline mb-6">
-                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                        placeholder="name@example.com" required/>
-                    <label for="exampleFormControlInput1">Email Autoselect / default user's</label>
-                </div> -->
+
 
                 <div class="form-floating form-floating-outline mb-6">
                     <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" formControlName="selected_option" (change)="selectedOption($event)" required>

@@ -1,133 +1,159 @@
 <div class="content-wrapper">
-    <div class="container-xxl flex-grow-1 container-p-y">
-        <div class="card">
-            <div class="card-body demo-vertical-spacing demo-only-element">
-                <h5 class="card-header">RESEARCH</h5>
-                <form [formGroup]="data" (ngSubmit)="submit(data.value)">
-
-
-                <!-- <div class="form-floating form-floating-outline mb-6">
-                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                        placeholder="name@example.com" required/>
-                    <label for="exampleFormControlInput1">Email Autoselect / default user's</label>
-                </div> -->
-
-                <div class="form-floating form-floating-outline mb-6">
-                    <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" formControlName="selected_option" (change)="selectedOption($event)" required>
-                        <option value="" selected disabled>select Option</option>
-                        <option value="Publications in national Conference">Publications in national Conference</option>
-                        <option value="Publications in International Conference">Publications in International Conference</option>
-                        <option value="Publications in International Journal [Science Direct / IEEE /
-                            Elsevier]">Publications in International Journal [Science Direct / IEEE /
-                            Elsevier]</option>
-                        <option value="National Conference Arranged">National Conference Arranged</option>
-                        <option value="International Conference Arranged">International Conference Arranged </option>
-                        <option value="Publications in Books / Book Chapters">Publications in Books / Book Chapters </option>
-                        <option value="Patent filed">Patent filed </option>
-                        <option value="Books Published">Books Published </option>
-                        <option value="Your Active Participation in Establishing Incubation Centre">Your Active Participation in Establishing Incubation Centre </option>
-                    </select>
-                    <label for="exampleFormControlSelect1">Select Option</label>
-                </div>
-
-                <div class="form-floating form-floating-outline mb-6">
-                    <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" formControlName="selected_sem" required>
-                        <option value="" selected disabled>select Sem</option>
-                        <option value="1">I</option>
-                        <option value="2">II</option>
-                    </select>
-                    <label for="exampleFormControlSelect1">Select Sem</label>
-                </div>
-
-                <div class="form-floating form-floating-outline mb-6">
-                    <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" formControlName="selected_year" required>
-                        <option value="" selected disabled>select Year</option>
-                        <option value="2024-25">2024-25</option>
-                        <option value="2025-26">2025-26</option>
-                    </select>
-                    <label for="exampleFormControlSelect1">Select Year</label>
-                </div>
-
-                <div class="accordion mt-4" id="accordionExample">
-                    <div class="accordion-item active">
-                        <h2 class="accordion-header" id="headingOne">
-                            <button type="button" class="accordion-button" data-bs-toggle="collapse"
-                                data-bs-target="#accordionOne" aria-expanded="true" aria-controls="accordionOne">
-                                <h4 *ngIf="option == null">Select Option</h4>
-                                <h4 *ngIf="option != ''">{{option}}</h4>
-                            </button>
-                        </h2>
-
-                        <div id="accordionOne" class="accordion-collapse collapse "
-                            data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <h5 class="card-header">Detailed Data</h5>
-                                <!-- <div class="mt-2 mb-4">
-                                    <label for="largeInput" class="form-label">Input Title</label>
-                                    <input id="largeInput" class="form-control form-control-lg" type="text"
-                                        placeholder="Title" />
-                                </div> -->
-                                <div class="form-floating form-floating-outline mb-6">
-                                    <textarea class="form-control h-px-200" id="exampleFormControlTextarea1"
-                                        placeholder="Enter details" formControlName="details" required></textarea>
-                                    <label for="exampleFormControlTextarea1">Enter Details</label>
-                                </div>
-                                <label for="largeInput" class="form-label">Attach PDF</label>
-                                <div class="input-group">
-                                    <input type="file" class="form-control" id="inputGroupFile02"  (change)="onFileChange($event)" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"  required />
-                                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                                </div>
-                                <div class="demo-inline-spacing">
-                                    <button type="submit" class="btn btn-info">Submit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </form>
-            </div>
-
-            <div class="container-xxl flex-grow-1 container-p-y">
+  <div class="container-xxl flex-grow-1 container-p-y">
     <div class="card">
-        <h5 class="card-header">Test Table</h5>
-        <div class="table-responsive text-nowrap">
-          <table class="table">
-            <thead class="table-dark">
-              <tr>
-                <th>Sr.No</th>
-                <th>Option</th>
-                <th>Details</th>
-                <th>File</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody class="table-border-bottom-0">
-              <tr *ngFor="let data of Researches;let i = index">
-                <td>{{i + 1}}</td>
-                <td><i class="ri-suitcase-2-line ri-22px text-danger me-4"></i><span>{{data.selected_option}}</span></td>
-                <td>{{data.details}}</td>
-                <td><a class="badge rounded-pill bg-label-primary me-1" (click)="download(data.file_path)">{{getOriginalFileName(data.file_path) }}</a></td>
-                <td>
-                  <div class="dropdown">
-                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                      <i class="ri-more-2-line"></i>
-                    </button>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="javascript:void(0);"
-                        ><i class="ri-pencil-line me-1"></i> Edit</a
-                      >
-                      <a class="dropdown-item" href="javascript:void(0);"
-                        ><i class="ri-delete-bin-6-line me-1"></i> Delete</a
-                      >
+      <div class="card-body demo-vertical-spacing demo-only-element">
+        <h5 class="card-header">RESEARCH</h5>
+
+        <form [formGroup]="data" (ngSubmit)="submit(data.value)" novalidate>
+
+          <!-- Option -->
+          <div class="form-floating form-floating-outline mb-4">
+            <select class="form-select" formControlName="selected_option" (change)="selectedOption($event)">
+              <option value="" disabled selected>Select Option</option>
+              <option value="Publications in national Conference">Publications in national Conference</option>
+              <option value="Publications in International Conference">Publications in International Conference</option>
+              <option value="Publications in International Journal [Science Direct / IEEE / Elsevier]">Publications in International Journal [Science Direct / IEEE / Elsevier]</option>
+              <option value="National Conference Arranged">National Conference Arranged</option>
+              <option value="International Conference Arranged">International Conference Arranged</option>
+              <option value="Publications in Books / Book Chapters">Publications in Books / Book Chapters</option>
+              <option value="Patent filed">Patent filed</option>
+              <option value="Books Published">Books Published</option>
+              <option value="Your Active Participation in Establishing Incubation Centre">Your Active Participation in Establishing Incubation Centre</option>
+            </select>
+            <label>Select Option <span class="text-danger">*</span></label>
+            <div class="text-danger mt-1" *ngIf="data.get('selected_option')?.touched && data.get('selected_option')?.invalid">
+              Option is required.
+            </div>
+          </div>
+
+          <!-- Semester -->
+          <div class="form-floating form-floating-outline mb-4">
+            <select class="form-select" formControlName="selected_sem">
+              <option value="" disabled selected>Select Semester</option>
+              <option value="1">I</option>
+              <option value="2">II</option>
+            </select>
+            <label>Select Semester <span class="text-danger">*</span></label>
+            <div class="text-danger mt-1" *ngIf="data.get('selected_sem')?.touched && data.get('selected_sem')?.invalid">
+              Semester is required.
+            </div>
+          </div>
+
+          <!-- Year -->
+          <div class="form-floating form-floating-outline mb-4">
+            <select class="form-select" formControlName="selected_year">
+              <option value="" disabled selected>Select Year</option>
+              <option value="2024-25">2024-25</option>
+              <option value="2025-26">2025-26</option>
+            </select>
+            <label>Select Year <span class="text-danger">*</span></label>
+            <div class="text-danger mt-1" *ngIf="data.get('selected_year')?.touched && data.get('selected_year')?.invalid">
+              Year is required.
+            </div>
+          </div>
+
+          <!-- Accordion for Details & File -->
+          <div class="accordion mt-4" id="accordionExample">
+            <div class="accordion-item active">
+              <h2 class="accordion-header" id="headingOne">
+                <button type="button" class="accordion-button" data-bs-toggle="collapse"
+                  data-bs-target="#accordionOne" aria-expanded="true" aria-controls="accordionOne">
+                  <h4 *ngIf="!option">Select Option</h4>
+                  <h4 *ngIf="option">{{ option }}</h4>
+                </button>
+              </h2>
+              <div id="accordionOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+
+                  <!-- Details -->
+                  <div class="form-floating form-floating-outline mb-4">
+                    <textarea class="form-control h-px-200" formControlName="details"
+                      placeholder="Enter details"></textarea>
+                    <label>Enter Details <span class="text-danger">*</span></label>
+                    <div class="text-danger mt-1" *ngIf="data.get('details')?.touched && data.get('details')?.invalid">
+                      Details are required.
                     </div>
                   </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+
+                  <!-- File -->
+                  <label class="form-label">Attach File <span class="text-danger">*</span></label>
+                  <div class="input-group mb-4">
+                    <input
+                      type="file"
+                      class="form-control"
+                      (change)="onFileChange($event)"
+                      [class.is-invalid]="fileTouched && !selectedFile"
+                      (blur)="fileTouched = true"
+                      accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                    />
+                    <label class="input-group-text">Upload</label>
+                  </div>
+                  <div class="text-danger mt-1" *ngIf="fileTouched && !selectedFile">
+                    File is required.
+                  </div>
+
+                  <div class="demo-inline-spacing">
+                    <button type="submit" class="btn btn-info">Submit</button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Table -->
+      <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="card">
+          <h5 class="card-header">Research Records</h5>
+          <div class="table-responsive text-nowrap">
+            <table class="table">
+              <thead class="table-dark">
+                <tr>
+                  <th>Sr.No</th>
+                  <th>Option</th>
+                  <th>Details</th>
+                  <th>File</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody class="table-border-bottom-0">
+                <tr *ngFor="let row of Researches; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ row.selected_option }}</td>
+                  <td>{{ row.details }}</td>
+                  <td>
+                    <a
+                      class="badge rounded-pill bg-label-primary me-1"
+                      (click)="download(row.file_path)"
+                      style="cursor: pointer;"
+                    >
+                      {{ getOriginalFileName(row.file_path) }}
+                    </a>
+                  </td>
+                  <td>
+                    <div class="dropdown">
+                      <button
+                        type="button"
+                        class="btn p-0 dropdown-toggle hide-arrow"
+                        data-bs-toggle="dropdown"
+                      >
+                        <i class="ri-more-2-line"></i>
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#"><i class="ri-pencil-line me-1"></i> Edit</a>
+                        <a class="dropdown-item" href="#"><i class="ri-delete-bin-6-line me-1"></i> Delete</a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-</div>
-        </div>
+
     </div>
+  </div>
 </div>

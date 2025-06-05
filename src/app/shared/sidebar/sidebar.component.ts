@@ -17,7 +17,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     if (typeof window !== 'undefined' && window.localStorage) {
       this.data = JSON.parse(localStorage.getItem("data") || '{}');
-      console.log(this.data);
+      // console.log(this.data);
     }
 
   }

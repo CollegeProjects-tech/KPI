@@ -25,7 +25,7 @@ export class FdpSttpWorkshopComponent implements OnInit {
 
    load(){
     this.getCurrentDateTime();
-    this.api.get('fdp_sttp_workshop/fdp_sttp_workshops').subscribe((res:any)=>{
+    this.api.get('FdpSttpWorkshop/FdpSttpWorkshop').subscribe((res:any)=>{
       this.fdp_sttp_workshops=res;
       console.log(res)
     })

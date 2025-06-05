@@ -1,0 +1,66 @@
+<!-- dashboard.component.html -->
+<div class="container-xxl flex-grow-1 container-p-y">
+
+  <!-- KPI Overview Card -->
+  <mat-card class="kpi-card">
+    <h2 class="kpi-title">KPI Overview</h2>
+    <div class="kpi-layout">
+
+      <!-- Doughnut Chart -->
+      <div class="kpi-chart-wrapper">
+        <canvas baseChart *ngIf="kpiOverviewData.labels.length > 0" [data]="kpiOverviewData" [type]="'doughnut'"
+          [options]="chartOptions">
+        </canvas>
+        <div class="kpi-center">
+          <!-- <button class="btn btn-lg"> -->
+          <h4>{{ totalCount }}</h4>
+          <p>Entries</p>
+          <!-- </button> -->
+        </div>
+      </div>
+
+      <!-- Summary -->
+      <div class="kpi-summary">
+        <div class="sales-header">
+          <mat-icon color="primary">summarize</mat-icon>
+          <div>
+            <p class="summary-label">Number of Entries</p>
+            <h3>{{ totalCount }}</h3>
+          </div>
+        </div>
+        <hr />
+        <div class="category" *ngFor="let label of kpiOverviewData.labels; let i = index">
+          <span class="dot" [ngStyle]="{'background-color': kpiOverviewData.datasets[0].backgroundColor[i]}"></span>
+          <span class="category-name">{{ label }}</span>
+          <span class="category-count">{{ kpiOverviewData.datasets[0].data[i] }}</span>
+        </div>
+      </div>
+
+    </div>
+  </mat-card>
+
+  <!-- Department-wise Cards -->
+  <div class="department-charts">
+    <mat-card class="kpi-card mt-4" *ngFor="let deptChart of departmentCharts">
+      <h2 class="kpi-title">{{ deptChart.department }} DEPARTMENT</h2>
+      <div class="kpi-chart-wrapper">
+        <canvas baseChart *ngIf="deptChart.chartData.labels.length > 0" [data]="deptChart.chartData" [type]="'doughnut'"
+          [options]="chartOptions">
+        </canvas>
+        <div class="kpi-center">
+          <!-- <button class="btn btn-lg"> -->
+          <h4>{{ deptChart.total }}</h4>
+          <p>Entries</p>
+          <!-- </button> -->
+        </div>
+      </div>
+      <div class="kpi-summary mt-3">
+        <div class="category" *ngFor="let label of deptChart.chartData.labels; let i = index">
+          <span class="dot" [ngStyle]="{'background-color': deptChart.chartData.datasets[0].backgroundColor[i]}"></span>
+          <span class="category-name">{{ label }}</span>
+          <span class="category-count">{{ deptChart.chartData.datasets[0].data[i] }}</span>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

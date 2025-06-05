@@ -1,49 +1,69 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import * as CryptoJS from 'crypto-js';
 import { AuthService } from '../shared/auth.service';
-import { subscribe } from 'diagnostics_channel';
+import { LayoutService } from '../shared/layout.service';
+import { ApiService } from '../shared/api.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginObj: any = {
-    userid: '',
-    password: ''
-  };
-  res:any;
+  loginForm!: FormGroup;
+  isLoading: boolean = false;
+  locatstorage_data:any;
 
-  constructor(private router: Router,private auth:AuthService) {}
+  constructor(private api:ApiService,private fb: FormBuilder, private router: Router, private auth: AuthService,private layoutService: LayoutService) {}
 
   ngOnInit() {
-    if(this.auth.isLoggedIn()){
+
+       if (typeof window !== 'undefined' && window.localStorage) {
+      this.locatstorage_data = JSON.parse(localStorage.getItem("data") || '{}');
+      // console.log(this.data);
+    }
+
+    if (this.auth.isLoggedIn()) {
+      this.router.navigate([this.locatstorage_data.usertype]);
+    }
+
+    if (this.auth.isLoggedIn()) {
       this.router.navigate(['staff']);
     }
+
+    this.loginForm = this.fb.group({
+      userid: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
- login() {
-  this.auth.login(this.loginObj).subscribe(
-    (res: any) => {
-      console.log(res.status);
-      console.log(res.data);
-
-      if (res.status == "success") {
-        this.router.navigate([res.data.usertype]);
-      } else {
-        alert("Not Found");
-      }
-    },
-    (err: any) => {
-      alert(err.error.title);
-      console.error(err);
+  login() {
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return;
     }
-  );
-}
+
+    this.isLoading = true;
+
+    this.auth.login(this.loginForm.value).subscribe(
+      (res: any) => {
+        this.isLoading = false;
+
+        if (res.status === 'success') {
+          this.router.navigate([res.data.usertype]);
+        } else {
+          alert('Invalid credentials');
+        }
+      },
+      (err: any) => {
+        this.isLoading = false;
+        alert(err?.error?.title || 'Login failed');
+        console.error(err);
+      }
+    );
+  }
 }

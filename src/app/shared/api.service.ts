@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 
 export class ApiService {
 
-  baseurl="https://localhost:7195/api/";
-  // baseurl="https://sgukpi.bsite.net/api/";
+  // baseurl="https://localhost:7195/api/";
+  baseurl="https://sgukpi.bsite.net/api/";
   constructor(private http:HttpClient) {}
 
   get(api: string) {
@@ -28,6 +28,11 @@ export class ApiService {
   delete(api: string) {
     return this.http.delete(this.baseurl + api)
   };
+
+  get_Dashboard<T>(url: string): Observable<T> {
+  return this.http.get<T>(`${this.baseurl}${url}`);
+}
+
 
   saveFileForm(api: string,research: any, file: File) {
     const formData = new FormData();
@@ -50,4 +55,23 @@ export class ApiService {
 
     return this.http.get(url, { responseType: 'blob' });
   }
+
+
+  localstorageData() {
+  let data: any[] = [];
+  if (typeof window !== 'undefined' && window.localStorage) {
+    const raw = localStorage.getItem("data");
+    if (raw) {
+      try {
+        data = JSON.parse(raw);
+      } catch (e) {
+        console.error("Error parsing localStorage data:", e);
+        data = [];
+      }
+    }
+  }
+  return data;
+}
+
+
 }

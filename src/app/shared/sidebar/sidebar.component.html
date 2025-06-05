@@ -38,7 +38,7 @@
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <!-- <i class="menu-icon tf-icons ri-home-smile-line"></i> -->
             <i class="menu-icon tf-icons ri-bar-chart-fill"></i>
-            <div data-i18n="Dashboards">KPI</div>
+            <div data-i18n="KPI">KPI</div>
             <!-- <div class="badge bg-danger rounded-pill ms-auto">5</div> -->
           </a>
           <ul class="menu-sub">
@@ -101,6 +101,12 @@
           </ul>
         </li>
         <!-- User interface -->
+         <li class="menu-item">
+          <a routerLink="dashboard" class="menu-link">
+            <i class="menu-icon tf-icons ri-article-line"></i>
+            <div data-i18n="Documentation">Dashboard</div>
+          </a>
+        </li>
         <li class="menu-item" *ngIf="data?.usertype == 'principle'">
           <a href="javascript:void(0)" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons ri-radio-button-line"></i>
