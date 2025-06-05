@@ -13,7 +13,7 @@
                 </div> -->
 
                 <div class="form-floating form-floating-outline mb-6">
-                    <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" formControlName="selected_option" required>
+                    <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" formControlName="selected_option" (change)="selectedOption($event)" required>
                         <option value="" selected disabled>select Option</option>
                         <option value="Degree First Year">Degree First Year</option>
                         <option value=" Degree Direct Second Year = 3-5 "> Degree Direct Second Year </option>
@@ -48,7 +48,8 @@
                         <h2 class="accordion-header" id="headingOne">
                             <button type="button" class="accordion-button" data-bs-toggle="collapse"
                                 data-bs-target="#accordionOne" aria-expanded="true" aria-controls="accordionOne">
-                                <h4>1.Publications in national Conference</h4>
+                                <h4 *ngIf="option == null">Select Option</h4>
+                                <h4 *ngIf="option != ''">{{option}}</h4>
                             </button>
                         </h2>
 

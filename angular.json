@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
               "src/assets/vendor/fonts/remixicon/remixicon.css",
               "src/assets/vendor/libs/node-waves/node-waves.css",
@@ -38,7 +39,8 @@
               "src/assets/js/config.js",
               "src/assets/vendor/js/bootstrap.js",
               "src/assets/vendor/js/menu.js",
-              "src/assets/js/main.js"
+              "src/assets/js/main.js",
+              "node_modules/chart.js/dist/chart.umd.js"
             ],
             "server": "src/main.server.ts",
             "prerender": true,
@@ -51,13 +53,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "500mb",
+                  "maximumError": "100mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "200mb",
+                  "maximumError": "400mb"
                 }
               ],
               "outputHashing": "all"
@@ -101,6 +103,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []

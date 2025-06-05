@@ -11,10 +11,11 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './fdp-sttp-workshop.component.css'
 })
 export class FdpSttpWorkshopComponent implements OnInit {
- 
+
  data : any;
  selectedFile: File | null = null;
  fdp_sttp_workshops : any;
+ option:any;
 
  constructor(private api:ApiService){}
 
@@ -24,20 +25,24 @@ export class FdpSttpWorkshopComponent implements OnInit {
 
    load(){
     this.getCurrentDateTime();
-    this.api.get('fdp_sttp_workshop/fdp_sttp_workshops').subscribe((res:any)=>{
+    this.api.get('FdpSttpWorkshop/FdpSttpWorkshop').subscribe((res:any)=>{
       this.fdp_sttp_workshops=res;
       console.log(res)
     })
 
     this.data = new FormGroup({
       // TEST_NAME: new FormControl('',Validators.compose([Validators.required])),
-      selected_option : new FormControl(),
-      selected_sem: new FormControl(),
-      selected_year: new FormControl(),
-      details: new FormControl(),
-      teacher_id: new FormControl(2),
+      selected_option : new FormControl(''),
+      selected_sem: new FormControl(''),
+      selected_year: new FormControl(''),
+      details: new FormControl(''),
+      teacher_id: new FormControl(),
       date: new FormControl()
     });
+  }
+
+  selectedOption(event: Event): void {
+    this.option = (event.target as HTMLSelectElement).value;
   }
 
   getOriginalFileName(path: string): string {

@@ -6,14 +6,10 @@
                 <form [formGroup]="data" (ngSubmit)="submit(data.value)">
 
 
-                <!-- <div class="form-floating form-floating-outline mb-6">
-                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                        placeholder="name@example.com" required/>
-                    <label for="exampleFormControlInput1">Email Autoselect / default user's</label>
-                </div> -->
+
 
                 <div class="form-floating form-floating-outline mb-6">
-                    <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" formControlName="selected_option" required>
+                    <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" formControlName="selected_option" (change)="selectedOption($event)" required>
                         <option value="" selected disabled>select Option</option>
                         <option value="Academic Guest Lectures Arranged ">Academic Guest Lectures Arranged </option>
                         <option value="Academic Guest Lectures Delivered [ As Resource Person] = 2 / Year">Academic Guest Lectures Delivered [ As Resource Person] = 2 / Year</option>
@@ -45,7 +41,8 @@
                         <h2 class="accordion-header" id="headingOne">
                             <button type="button" class="accordion-button" data-bs-toggle="collapse"
                                 data-bs-target="#accordionOne" aria-expanded="true" aria-controls="accordionOne">
-                                <h4>1.Publications in national Conference</h4>
+                                <h4 *ngIf="option == null">Select Option</h4>
+                                <h4 *ngIf="option != ''">{{option}}</h4>
                             </button>
                         </h2>
 

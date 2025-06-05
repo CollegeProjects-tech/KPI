@@ -13,7 +13,7 @@
                 </div> -->
 
                 <div class="form-floating form-floating-outline mb-6">
-                    <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" formControlName="selected_option" required>
+                    <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" formControlName="selected_option" (change)="selectedOption($event)" required>
                         <option value="" selected disabled>select Option</option>
                         <option value="Campus Interview Organized For Departmental Final Year Students = 1 / Year">Campus Interview Organized For Departmental Final Year Students = 1 / Year</option>
                         <option value="Students Placed individually = 5 / Year">Students Placed individually = 5 / Year</option>
@@ -31,7 +31,7 @@
                        <option value="Your Active Participation in Annual Sports Events ">Your Active Participation in Annual Sports Events</option>
                        <option value="Your Active Participation in Parikramma ">Your Active Participation in Parikramma</option>
                        <option value="Your Active Participation in Establishing qualities amongst students to become Govt. Officer, Entrepreneur, Efficient Professional ">Your Active Participation in Establishing qualities amongst students to become Govt. Officer, Entrepreneur, Efficient Professional</option>
-                       
+
                     </select>
                     <label for="exampleFormControlSelect1">Select Option</label>
                 </div>
@@ -59,7 +59,8 @@
                         <h2 class="accordion-header" id="headingOne">
                             <button type="button" class="accordion-button" data-bs-toggle="collapse"
                                 data-bs-target="#accordionOne" aria-expanded="true" aria-controls="accordionOne">
-                                <h4>1.Publications in national Conference</h4>
+                                <h4 *ngIf="option == null">Select Option</h4>
+                                <h4 *ngIf="option != ''">{{option}}</h4>
                             </button>
                         </h2>
 

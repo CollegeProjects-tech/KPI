@@ -15,6 +15,7 @@ export class StudentDevelopmentComponent implements OnInit {
   data:any;
   selectedFile: File | null = null;
   Studentdevelopment:any;
+  option:any;
 
   constructor(private api:ApiService){}
   ngOnInit(): void {
@@ -23,26 +24,30 @@ export class StudentDevelopmentComponent implements OnInit {
 
    load(){
       this.getCurrentDateTime();
-      this.api.get('Studentdevelopment/Studentdevelopment').subscribe((res:any)=>{
+      this.api.get('StudentDevelopment/StudentDevelopment').subscribe((res:any)=>{
         this.Studentdevelopment=res;
         console.log(res)
       })
-  
+
       this.data = new FormGroup({
         // TEST_NAME: new FormControl('',Validators.compose([Validators.required])),
-        selected_option : new FormControl(),
-        selected_sem: new FormControl(),
-        selected_year: new FormControl(),
-        details: new FormControl(),
-        teacher_id: new FormControl(2),
+        selected_option : new FormControl(''),
+        selected_sem: new FormControl(''),
+        selected_year: new FormControl(''),
+        details: new FormControl(''),
+        teacher_id: new FormControl(),
         date: new FormControl()
       });
     }
-  
+
+    selectedOption(event: Event): void {
+    this.option = (event.target as HTMLSelectElement).value;
+  }
+
     getOriginalFileName(path: string): string {
     const fullName = path.split('/').pop(); // e.g., Demo - Gamepad (7)_20250512191714.png
     if (!fullName) return '';
-  
+
     const nameOnly = fullName.substring(0, fullName.lastIndexOf('_')); // Remove timestamp
     return nameOnly;
   }
@@ -52,12 +57,12 @@ export class StudentDevelopmentComponent implements OnInit {
       console.warn('Invalid file path.');
       return;
     }
-  
+
     const teacherId = parts[2]; // e.g., '2'
     const fullFileName = parts[3]; // e.g., 'Demo - Gamepad (7)_20250512191714.png'
-  
+
     const baseName = fullFileName.substring(0, fullFileName.lastIndexOf('_'));
-  
+
       this.api.downloadFile('Research/Download',teacherId, fullFileName).subscribe(
         (blob: Blob) => {
           // Create a URL for the blob and trigger the download
@@ -75,21 +80,21 @@ export class StudentDevelopmentComponent implements OnInit {
         }
       );
   }
-  
+
     getCurrentDateTime(): string {
     const now = new Date();
-  
+
     const year = now.getFullYear();
     const month = ('0' + (now.getMonth() + 1)).slice(-2);
     const day = ('0' + now.getDate()).slice(-2);
     const hours = ('0' + now.getHours()).slice(-2);
     const minutes = ('0' + now.getMinutes()).slice(-2);
     const seconds = ('0' + now.getSeconds()).slice(-2);
-  
+
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   }
-  
-  
+
+
     onFileChange(event: any) {
       this.selectedFile = event.target.files[0];
     }
@@ -99,8 +104,8 @@ export class StudentDevelopmentComponent implements OnInit {
         return;
       }
       this.data.date = this.getCurrentDateTime();
-  
-      this.api.saveFileForm("Research/SaveResearch",data, this.selectedFile)
+
+      this.api.saveFileForm("StudentDevelopment/SaveStudentDevelopment",data, this.selectedFile)
         .subscribe({
           next: (res) => console.log('Upload successful:', res),
           error: (err) => console.error('Upload failed:', err)
