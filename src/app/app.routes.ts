@@ -13,21 +13,21 @@ export const routes: Routes = [
   },
   {
     // canActivate:[authGuard],
-    path: 'admin/landing',
+    path: 'admin',
     loadComponent: () =>
       import('../app/admin/landing/landing.component').then(m => m.LandingComponent),
       loadChildren:() => import('../app/admin/admin.routes').then(m => m.ADMIN_ROUTES)
-  
+
   },
   {
     // canActivate:[authGuard],
-    path: 'authority',
+    path: 'principle',
     loadComponent: () => import('../app/authority/landing/landing.component').then(m => m.LandingComponent),
-      loadChildren:() => import('../app/authority/authority.routes').then(m => m.AUTHORITY_ROUTES) 
+      loadChildren:() => import('../app/authority/authority.routes').then(m => m.AUTHORITY_ROUTES)
   },
   {
     // canActivate:[authGuard],
-    path: 'staff',
+    path: 'teacher',
     loadComponent: () => import('../app/staff/landing/landing.component').then(m => m.LandingComponent),
     loadChildren: () => import('../app/staff/staff.routes').then(m => m.STAFF_ROUTES) // Load child routes
   },

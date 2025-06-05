@@ -1,102 +1,69 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import * as CryptoJS from 'crypto-js';
 import { AuthService } from '../shared/auth.service';
-import { subscribe } from 'diagnostics_channel';
+import { LayoutService } from '../shared/layout.service';
+import { ApiService } from '../shared/api.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginObj: any = {
-    username: '',
-    password: ''
-  };
-  res:any;
+  loginForm!: FormGroup;
+  isLoading: boolean = false;
+  locatstorage_data:any;
 
-  private secretKey: string = 'mySecretKey123'; // Consider securing this
-
-  constructor(private router: Router,private auth:AuthService) {}
+  constructor(private api:ApiService,private fb: FormBuilder, private router: Router, private auth: AuthService,private layoutService: LayoutService) {}
 
   ngOnInit() {
-    if(this.auth.isLoggedIn()){
-      // this.router.navigate(['authority']);
+
+       if (typeof window !== 'undefined' && window.localStorage) {
+      this.locatstorage_data = JSON.parse(localStorage.getItem("data") || '{}');
+      // console.log(this.data);
+    }
+
+    if (this.auth.isLoggedIn()) {
+      this.router.navigate([this.locatstorage_data.usertype]);
+    }
+
+    if (this.auth.isLoggedIn()) {
       this.router.navigate(['staff']);
     }
-    // if (this.isLocalStorageAvailable()) {
-    //   if (!localStorage.getItem('username')) {
-    //     localStorage.setItem('username', 'Atharv');
-    //     localStorage.setItem('password', this.encryptPassword('Atharv123'));
-    //     localStorage.setItem('usertype', 'admin');
 
-    //   }
-    // }
+    this.loginForm = this.fb.group({
+      userid: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
-  // isLocalStorageAvailable(): boolean {
-  //   try {
-  //     const testKey = '__test__';
-  //     localStorage.setItem(testKey, 'test');
-  //     localStorage.removeItem(testKey);
-  //     return true;
-  //   } catch (e) {
-  //     return false;
-  //   }
-  // }
-
-  // encryptPassword(password: string): string {
-  //   return CryptoJS.AES.encrypt(password, this.secretKey).toString();
-  // }
-
-  // decryptPassword(encryptedPassword: string): string {
-  //   const bytes = CryptoJS.AES.decrypt(encryptedPassword, this.secretKey);
-  //   return bytes.toString(CryptoJS.enc.Utf8);
-  // }
-
-  // login() {
-  //   if (!this.isLocalStorageAvailable()) {
-  //     alert('Local storage is not available. Please enable it or use another browser.');
-  //     return;
-  //   }
-
-  //   const storedUsername = localStorage.getItem('username');
-  //   const storedEncryptedPassword = localStorage.getItem('password');
-
-  //   if (!storedUsername || !storedEncryptedPassword) {
-  //     alert('No user found!');
-  //     return;
-  //   }
-
-  //   const decryptedPassword = this.decryptPassword(storedEncryptedPassword);
-
-  //   if (
-  //     this.loginObj.username === storedUsername &&
-  //     this.loginObj.password === decryptedPassword
-  //   ) {
-  //     this.router.navigate(['staff']);
-  //   } else {
-  //     alert('Invalid Credentials');
-  //   }
-  // }
-
-  login(){
-    this.res = this.auth.login(this.loginObj);
-
-    if(this.res.status == "success"){
-      // this.router.navigate(['authority']);
-      this.router.navigate(['staff']);
+  login() {
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return;
     }
-    else
-    {
-      alert("Not Found");
 
-    }
-    console.log(this.res);
+    this.isLoading = true;
+
+    this.auth.login(this.loginForm.value).subscribe(
+      (res: any) => {
+        this.isLoading = false;
+
+        if (res.status === 'success') {
+          this.router.navigate([res.data.usertype]);
+        } else {
+          alert('Invalid credentials');
+        }
+      },
+      (err: any) => {
+        this.isLoading = false;
+        alert(err?.error?.title || 'Login failed');
+        console.error(err);
+      }
+    );
   }
 }

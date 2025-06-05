@@ -5,18 +5,22 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [RouterModule,CommonModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
 
 
 export class SidebarComponent implements OnInit {
-  usertype :any;
+  data: any;
 
   ngOnInit(): void {
-  this.usertype = localStorage.getItem("usertype"); 
+    if (typeof window !== 'undefined' && window.localStorage) {
+      this.data = JSON.parse(localStorage.getItem("data") || '{}');
+      // console.log(this.data);
+    }
+
   }
 
-  
+
 }
