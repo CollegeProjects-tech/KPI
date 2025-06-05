@@ -34,7 +34,7 @@
       <div class="menu-inner-shadow"></div>
       <ul class="menu-inner py-1 ">
         <!-- Dashboards -->
-        <li class="menu-item active ">
+        <li class="menu-item active " *ngIf="data?.usertype == 'teacher'">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <!-- <i class="menu-icon tf-icons ri-home-smile-line"></i> -->
             <i class="menu-icon tf-icons ri-bar-chart-fill"></i>
@@ -42,53 +42,53 @@
             <!-- <div class="badge bg-danger rounded-pill ms-auto">5</div> -->
           </a>
           <ul class="menu-sub">
-            <li *ngIf="usertype=='admin'" class="menu-item" routerLinkActive="active">
+            <li class="menu-item" routerLinkActive="active">
               <a routerLink="kpi/research" class="menu-link">
                 <div data-i18n="drr">Research</div>
               </a>
             </li>
-            <li *ngIf="usertype=='admin'" class="menu-item" routerLinkActive="active">
+            <li class="menu-item" routerLinkActive="active">
               <a routerLink="kpi/ind-ins-interaction" class="menu-link">
                 <div data-i18n="drr">Industry Institute Interaction</div>
               </a>
             </li>
-            <li *ngIf="usertype=='admin'" class="menu-item" routerLinkActive="active">
-              <a routerLink="/staff/kpi/fdp-sttp-workshop" class="menu-link">
+            <li class="menu-item" routerLinkActive="active">
+              <a routerLink="kpi/fdp-sttp-workshop" class="menu-link">
                 <div data-i18n="drr">FDP/STTP/Workshops</div>
               </a>
             </li>
-            <li *ngIf="usertype=='admin'" class="menu-item" routerLinkActive="active">
+            <li class="menu-item" routerLinkActive="active">
               <a routerLink="kpi/student-development" class="menu-link">
                 <div data-i18n="drr">Student Development</div>
               </a>
             </li>
-            <li *ngIf="usertype=='admin'" class="menu-item" routerLinkActive="active">
+            <li class="menu-item" routerLinkActive="active">
               <a routerLink="kpi/admmission" class="menu-link">
                 <div data-i18n="drr"> Admissions</div>
               </a>
             </li>
-            <li *ngIf="usertype=='admin'" class="menu-item" routerLinkActive="active">
+            <li class="menu-item" routerLinkActive="active">
               <a routerLink="kpi/aca-gustlec-arranged" class="menu-link">
                 <div data-i18n="drr">Academic Gust lecture Arranged</div>
               </a>
             </li>
-            <li *ngIf="usertype=='admin'" class="menu-item" routerLinkActive="active">
+            <li class="menu-item" routerLinkActive="active">
               <a routerLink="kpi/internal-revnu-gen" class="menu-link">
                 <div data-i18n="drr">Internal Revenue Generation</div>
               </a>
             </li>
-            <li *ngIf="usertype=='admin'" class="menu-item" routerLinkActive="active">
+            <li class="menu-item" routerLinkActive="active">
               <a routerLink="kpi/administrative-resp" class="menu-link">
-                <div data-i18n="drr">administrative Responsibilities</div>
+                <div data-i18n="drr">Administrative Responsibilities</div>
               </a>
             </li>
-            <li *ngIf="usertype=='admin'" class="menu-item" routerLinkActive="active">
+            <li class="menu-item" routerLinkActive="active">
               <a routerLink="kpi/exam-sec-resp" class="menu-link">
                 <div data-i18n="drr">Exam Section Responsibilities</div>
               </a>
             </li>
 
-            <li *ngIf="usertype=='teacher'" class="menu-item" routerLinkActive="active">
+            <li class="menu-item" routerLinkActive="active">
               <a routerLink="/dashboard/ic" class="menu-link">
                 <div data-i18n="Issued Certificate">Issued Certificate</div>
                 <!-- <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div> -->
@@ -96,25 +96,26 @@
             </li>
 
 
-            <!-- authority "PRINCIPLE"-->
 
-            <li *ngIf="usertype=='authority'" class="menu-item" routerLinkActive="active">
-              <a routerLink="principle" class="menu-link">
-                <div data-i18n="#">View Details</div>
-                <!-- <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div> -->
-              </a>
-            </li>
 
           </ul>
         </li>
         <!-- User interface -->
-        <li class="menu-item">
+        <li class="menu-item" *ngIf="data?.usertype == 'principle'">
           <a href="javascript:void(0)" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons ri-radio-button-line"></i>
-            <div data-i18n="User interface">DRR</div>
+            <div data-i18n="User interface">Teacher Details</div>
           </a>
           <ul class="menu-sub">
-            <li class="menu-item">
+            <!-- authority "PRINCIPLE"-->
+
+            <li class="menu-item" routerLinkAct ive="active">
+              <a routerLink="details" class="menu-link">
+                <div data-i18n="#">View Details</div>
+                <!-- <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</div> -->
+              </a>
+            </li>
+            <!-- <li class="menu-item">
               <a href="#" class="menu-link">
                 <div data-i18n="Accordion">Options</div>
               </a>
@@ -123,103 +124,18 @@
               <a href="#" class="menu-link">
                 <div data-i18n="Alerts">Options</div>
               </a>
-            </li>
-            <!-- <li class="menu-item">
-              <a href="ui-badges.html" class="menu-link">
-                <div data-i18n="Badges">Badges</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="ui-buttons.html" class="menu-link">
-                <div data-i18n="Buttons">Buttons</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="ui-carousel.html" class="menu-link">
-                <div data-i18n="Carousel">Carousel</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="ui-collapse.html" class="menu-link">
-                <div data-i18n="Collapse">Collapse</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="ui-dropdowns.html" class="menu-link">
-                <div data-i18n="Dropdowns">Dropdowns</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="ui-footer.html" class="menu-link">
-                <div data-i18n="Footer">Footer</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="ui-list-groups.html" class="menu-link">
-                <div data-i18n="List Groups">List Groups</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="ui-modals.html" class="menu-link">
-                <div data-i18n="Modals">Modals</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="ui-navbar.html" class="menu-link">
-                <div data-i18n="Navbar">Navbar</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="ui-offcanvas.html" class="menu-link">
-                <div data-i18n="Offcanvas">Offcanvas</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="ui-pagination-breadcrumbs.html" class="menu-link">
-                <div data-i18n="Pagination & Breadcrumbs">Pagination &amp; Breadcrumbs</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="ui-progress.html" class="menu-link">
-                <div data-i18n="Progress">Progress</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="ui-spinners.html" class="menu-link">
-                <div data-i18n="Spinners">Spinners</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="ui-tabs-pills.html" class="menu-link">
-                <div data-i18n="Tabs & Pills">Tabs &amp; Pills</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="ui-toasts.html" class="menu-link">
-                <div data-i18n="Toasts">Toasts</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="ui-tooltips-popovers.html" class="menu-link">
-                <div data-i18n="Tooltips & Popovers">Tooltips &amp; Popovers</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="ui-typography.html" class="menu-link">
-                <div data-i18n="Typography">Typography</div>
-              </a>
             </li> -->
           </ul>
         </li>
 
         <!-- Teacher Start -->
-        <li class="menu-item">
+        <li class="menu-item" *ngIf="data?.usertype == 'admin'">
           <a href="javascript:void(0)" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons ri-radio-button-line"></i>
-            <div data-i18n="Extended UI">Teacher</div>
+            <div data-i18n="Extended UI">Master</div>
           </a>
           <ul class="menu-sub">
-            <li *ngIf="usertype=='admin'" class="menu-item" routerLinkActive="active">
+            <li class="menu-item" routerLinkActive="active">
               <a routerLink="add-teacher" class="menu-link">
                 <div data-i18n="teacher">Add Teacher</div>
               </a>
@@ -233,7 +149,7 @@
         </li>
          <!-- Teacher END! -->
 
-        <li class="menu-item">
+        <!-- <li class="menu-item">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons ri-radio-button-line"></i>
             <div data-i18n="Form Elements">Extra</div>
@@ -268,7 +184,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> -->
 
         <li class="menu-header mt-7"><span class="menu-header-text">Misc</span></li>
         <li class="menu-item">

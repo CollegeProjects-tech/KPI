@@ -10,31 +10,31 @@
               <span style="color: #9055fd">
                 <svg width="300" height="300" viewBox="90 10 100 200" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                   
+
                     <linearGradient id="grad-front" x1="0%" y1="0%" x2="0%" y2="100%">
                       <stop offset="0%" style="stop-color:#4FC3F7;stop-opacity:1" />
                       <stop offset="100%" style="stop-color:#0288D1;stop-opacity:1" />
                     </linearGradient>
-                   
+
                     <linearGradient id="grad-side" x1="0%" y1="0%" x2="100%" y2="0%">
                       <stop offset="0%" style="stop-color:#0288D1;stop-opacity:1" />
                       <stop offset="100%" style="stop-color:#01579B;stop-opacity:1" />
                     </linearGradient>
                   </defs>
-                
-                 
+
+
                   <path d="M60 220 L150 40 L240 220 L210 220 L150 100 L90 220 Z" fill="url(#grad-front)" />
-                
-                  
+
+
                   <path d="M150 40 L240 220 L210 220 L150 100 Z" fill="url(#grad-side)" />
-                
-                  
+
+
                   <rect x="105" y="130" width="90" height="20" fill="#4FC3F7" />
-                
-                 
+
+
                   <rect x="120" y="135" width="60" height="15" fill="#0288D1" />
                 </svg>
-              
+
               </span>
             </span>
             <span class="app-brand-text demo text-heading fw-semibold">Automate</span>
@@ -53,7 +53,7 @@
                 class="form-control"
                 id="email"
                 name="email-username"
-                [(ngModel)]="loginObj.username"
+                [(ngModel)]="loginObj.userid"
                 placeholder="Enter your email or username"
                 autofocus />
               <label for="email">Email or Username</label>
@@ -90,7 +90,7 @@
             </div>
           </form>
 
-        
+
         </div>
       </div>
       <!-- /Login -->

@@ -5,10 +5,11 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ApiService {
 
-  // baseurl="https://localhost:7195/api/";
-  baseurl="https://sgukpi.bsite.net/api/";
+  baseurl="https://localhost:7195/api/";
+  // baseurl="https://sgukpi.bsite.net/api/";
   constructor(private http:HttpClient) {}
 
   get(api: string) {

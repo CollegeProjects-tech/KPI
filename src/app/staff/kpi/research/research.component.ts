@@ -16,6 +16,7 @@ export class ResearchComponent implements OnInit {
   data:any;
   selectedFile: File | null = null;
   Researches:any;
+  option:any;
 
   constructor(private api:ApiService){}
   ngOnInit(): void {
@@ -32,13 +33,17 @@ export class ResearchComponent implements OnInit {
 
     this.data = new FormGroup({
       // TEST_NAME: new FormControl('',Validators.compose([Validators.required])),
-      selected_option : new FormControl(),
-      selected_sem: new FormControl(),
-      selected_year: new FormControl(),
-      details: new FormControl(),
-      teacher_id: new FormControl(2),
+      selected_option : new FormControl(''),
+      selected_sem: new FormControl(''),
+      selected_year: new FormControl(''),
+      details: new FormControl(''),
+      teacher_id: new FormControl(),
       date: new FormControl()
     });
+  }
+
+  selectedOption(event: Event): void {
+    this.option = (event.target as HTMLSelectElement).value;
   }
 
   getOriginalFileName(path: string): string {

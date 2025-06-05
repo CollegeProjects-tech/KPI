@@ -15,88 +15,35 @@ import { subscribe } from 'diagnostics_channel';
 })
 export class LoginComponent implements OnInit {
   loginObj: any = {
-    username: '',
+    userid: '',
     password: ''
   };
   res:any;
-
-  private secretKey: string = 'mySecretKey123'; // Consider securing this
 
   constructor(private router: Router,private auth:AuthService) {}
 
   ngOnInit() {
     if(this.auth.isLoggedIn()){
-      // this.router.navigate(['authority']);
       this.router.navigate(['staff']);
     }
-    // if (this.isLocalStorageAvailable()) {
-    //   if (!localStorage.getItem('username')) {
-    //     localStorage.setItem('username', 'Atharv');
-    //     localStorage.setItem('password', this.encryptPassword('Atharv123'));
-    //     localStorage.setItem('usertype', 'admin');
-
-    //   }
-    // }
   }
 
-  // isLocalStorageAvailable(): boolean {
-  //   try {
-  //     const testKey = '__test__';
-  //     localStorage.setItem(testKey, 'test');
-  //     localStorage.removeItem(testKey);
-  //     return true;
-  //   } catch (e) {
-  //     return false;
-  //   }
-  // }
+ login() {
+  this.auth.login(this.loginObj).subscribe(
+    (res: any) => {
+      console.log(res.status);
+      console.log(res.data);
 
-  // encryptPassword(password: string): string {
-  //   return CryptoJS.AES.encrypt(password, this.secretKey).toString();
-  // }
-
-  // decryptPassword(encryptedPassword: string): string {
-  //   const bytes = CryptoJS.AES.decrypt(encryptedPassword, this.secretKey);
-  //   return bytes.toString(CryptoJS.enc.Utf8);
-  // }
-
-  // login() {
-  //   if (!this.isLocalStorageAvailable()) {
-  //     alert('Local storage is not available. Please enable it or use another browser.');
-  //     return;
-  //   }
-
-  //   const storedUsername = localStorage.getItem('username');
-  //   const storedEncryptedPassword = localStorage.getItem('password');
-
-  //   if (!storedUsername || !storedEncryptedPassword) {
-  //     alert('No user found!');
-  //     return;
-  //   }
-
-  //   const decryptedPassword = this.decryptPassword(storedEncryptedPassword);
-
-  //   if (
-  //     this.loginObj.username === storedUsername &&
-  //     this.loginObj.password === decryptedPassword
-  //   ) {
-  //     this.router.navigate(['staff']);
-  //   } else {
-  //     alert('Invalid Credentials');
-  //   }
-  // }
-
-  login(){
-    this.res = this.auth.login(this.loginObj);
-
-    if(this.res.status == "success"){
-      // this.router.navigate(['authority']);
-      this.router.navigate(['staff']);
+      if (res.status == "success") {
+        this.router.navigate([res.data.usertype]);
+      } else {
+        alert("Not Found");
+      }
+    },
+    (err: any) => {
+      alert(err.error.title);
+      console.error(err);
     }
-    else
-    {
-      alert("Not Found");
-
-    }
-    console.log(this.res);
-  }
+  );
+}
 }
