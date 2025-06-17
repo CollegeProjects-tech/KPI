@@ -17,6 +17,7 @@ export class InternalRevnuGenComponent implements OnInit{
   selectedFile: File | null = null;
   Int_rev_genrates:any;
   option:any;
+  fileTouched = false;
 
   constructor(private api:ApiService){}
   ngOnInit(): void {

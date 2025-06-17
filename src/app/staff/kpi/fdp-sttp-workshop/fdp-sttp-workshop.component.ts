@@ -16,6 +16,7 @@ export class FdpSttpWorkshopComponent implements OnInit {
  selectedFile: File | null = null;
  fdp_sttp_workshops : any;
  option:any;
+ fileTouched = false;
 
  constructor(private api:ApiService){}
 

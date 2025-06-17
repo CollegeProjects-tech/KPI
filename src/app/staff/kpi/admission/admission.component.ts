@@ -17,6 +17,7 @@ export class AdmissionComponent implements OnInit {
   selectedFile: File | null = null;
   admissions:any;
   option:any;
+  fileTouched = false;
 
   constructor(private api:ApiService){}
   ngOnInit(): void {

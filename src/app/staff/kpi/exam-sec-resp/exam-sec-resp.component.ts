@@ -17,6 +17,8 @@ export class ExamSecRespComponent implements OnInit {
   selectedFile: File | null = null;
   Exam_sec_res:any;
   option:any;
+  fileTouched = false;
+
 
   constructor(private api:ApiService){}
   ngOnInit(): void {

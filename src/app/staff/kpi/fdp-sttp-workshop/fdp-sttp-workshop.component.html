@@ -16,7 +16,10 @@
                         <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example"
                             formControlName="selected_option" (change)="selectedOption($event)" required>
                             <option value="" selected disabled>select Option</option>
-                            <option value="Short Term Training Program Attended [AICTE /ISTE Approved or AICTE /ISTE Sponsored Only]">Short Term Training Program Attended [AICTE /ISTE Approved or AICTE /ISTE Sponsored Only]</option>
+                            <option
+                                value="Short Term Training Program Attended [AICTE /ISTE Approved or AICTE /ISTE Sponsored Only]">
+                                Short Term Training Program Attended [AICTE /ISTE Approved or AICTE /ISTE Sponsored
+                                Only]</option>
                             <option
                                 value="Faculty Development Program Attended [AICTE /ISTE Approved or AICTE /ISTE Sponsored Only]">
                                 Faculty Development Program Attended [AICTE /ISTE Approved or AICTE /ISTE Sponsored
@@ -47,7 +50,11 @@
                             <option value="Resource Person For AICTE /ISTE Approved Workshop">Resource Person For AICTE
                                 /ISTE Approved Workshop</option>
                         </select>
-                        <label for="exampleFormControlSelect1">Select Option</label>
+                        <label for="exampleFormControlSelect1">Select Option <span class="text-danger">*</span></label>
+                        <div class="text-danger mt-1"
+                            *ngIf="data.get('selected_option')?.touched && data.get('selected_option')?.invalid">
+                            Option is required.
+                        </div>
                     </div>
 
                     <div class="form-floating form-floating-outline mb-6">
@@ -57,7 +64,11 @@
                             <option value="1">I</option>
                             <option value="2">II</option>
                         </select>
-                        <label for="exampleFormControlSelect1">Select Sem</label>
+                        <label for="exampleFormControlSelect1">Select Sem <span class="text-danger">*</span></label>
+                        <div class="text-danger mt-1"
+                            *ngIf="data.get('selected_sem')?.touched && data.get('selected_sem')?.invalid">
+                            Semester is required.
+                        </div>
                     </div>
 
                     <div class="form-floating form-floating-outline mb-6">
@@ -67,7 +78,11 @@
                             <option value="2024-25">2024-25</option>
                             <option value="2025-26">2025-26</option>
                         </select>
-                        <label for="exampleFormControlSelect1">Select Year</label>
+                        <label for="exampleFormControlSelect1">Select Year <span class="text-danger">*</span></label>
+                        <div class="text-danger mt-1"
+                            *ngIf="data.get('selected_year')?.touched && data.get('selected_year')?.invalid">
+                            Year is required.
+                        </div>
                     </div>
 
                     <div class="accordion mt-4" id="accordionExample">
@@ -76,14 +91,13 @@
                                 <button type="button" class="accordion-button" data-bs-toggle="collapse"
                                     data-bs-target="#accordionOne" aria-expanded="true" aria-controls="accordionOne">
                                     <h4 *ngIf="option == null">Select Option</h4>
-                                <h4 *ngIf="option != ''">{{option}}</h4>
+                                    <h4 *ngIf="option != ''">{{option}}</h4>
                                 </button>
                             </h2>
 
-                            <div id="accordionOne" class="accordion-collapse collapse "
+                            <div id="accordionOne" class="accordion-collapse  "
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    <h5 class="card-header">Detailed Data</h5>
                                     <!-- <div class="mt-2 mb-4">
                                     <label for="largeInput" class="form-label">Input Title</label>
                                     <input id="largeInput" class="form-control form-control-lg" type="text"
@@ -92,14 +106,23 @@
                                     <div class="form-floating form-floating-outline mb-6">
                                         <textarea class="form-control h-px-200" id="exampleFormControlTextarea1"
                                             placeholder="Enter details" formControlName="details" required></textarea>
-                                        <label for="exampleFormControlTextarea1">Enter Details</label>
+                                        <label for="exampleFormControlTextarea1">Enter Details <span
+                                                class="text-danger">*</span></label>
+                                        <div class="text-danger mt-1"
+                                            *ngIf="data.get('details')?.touched && data.get('details')?.invalid">
+                                            Details are required.
+                                        </div>
                                     </div>
-                                    <label for="largeInput" class="form-label">Attach PDF</label>
+                                    <label for="largeInput" class="form-label">Attach File <span
+                                            class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <input type="file" class="form-control" id="inputGroupFile02"
                                             (change)="onFileChange($event)" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
                                             required />
-                                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                                        <!-- <label class="input-group-text" for="inputGroupFile02">Upload</label> -->
+                                    </div>
+                                    <div class="text-danger mt-1" *ngIf="fileTouched && !selectedFile">
+                                        File is required.
                                     </div>
                                     <div class="demo-inline-spacing">
                                         <button type="submit" class="btn btn-info">Submit</button>
