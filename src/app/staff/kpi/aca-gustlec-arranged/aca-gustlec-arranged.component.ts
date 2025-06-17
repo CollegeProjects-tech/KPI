@@ -16,6 +16,7 @@ export class AcaGustlecArrangedComponent implements OnInit {
   selectedFile: File | null = null;
   Acagustlecs:any;
   option:any;
+  fileTouched = false;
 
   constructor(private api:ApiService){}
   ngOnInit(): void {

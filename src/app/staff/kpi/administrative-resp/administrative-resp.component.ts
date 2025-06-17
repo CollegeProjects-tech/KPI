@@ -17,6 +17,7 @@ export class AdministrativeRespComponent implements OnInit {
   selectedFile: File | null = null;
   Administrativeres: any;
   option:any;
+  fileTouched = false;
 
   constructor(private api: ApiService) { }
   ngOnInit(): void {

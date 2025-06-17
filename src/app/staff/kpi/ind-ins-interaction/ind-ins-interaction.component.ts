@@ -17,6 +17,7 @@ export class IndInsInteractionComponent implements OnInit {
   selectedFile: File | null = null;
   ind_ins_interactions:any;
   option:any;
+  fileTouched = false;
 
   constructor(private api:ApiService){}
   ngOnInit(): void {
