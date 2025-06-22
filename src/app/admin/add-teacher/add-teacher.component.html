@@ -7,15 +7,15 @@
                     <h5 class="mb-0">Add Teacher Form</h5>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form [formGroup]="teacherForm" (ngSubmit)="onSubmit(teacherForm.value)">
                         <div class="form-floating form-floating-outline mb-6">
                             <input type="text" class="form-control" id="basic-default-fullname"
-                                placeholder="Teacher Name"  required/>
+                                placeholder="Teacher Name" formControlName="user_name"  required/>
                             <label for="basic-default-fullname"><i class="ri-user-line ri-11px"></i> Full Name</label>
                         </div>
                         <div class="form-floating form-floating-outline mb-6" required>
                             <select class="form-select" id="exampleFormControlSelect1"
-                                aria-label="Default select example ">
+                                aria-label="Default select example " formControlName="department">
                                 <option selected disabled>Select Department</option>
                                 <option value="1">CSE</option>
                                 <option value="2">AI-ML</option>
@@ -31,19 +31,19 @@
                                 <div class="form-floating form-floating-outline">
                                     <input type="text" id="basic-default-email" class="form-control"
                                         placeholder="teacher-email" aria-label="john.doe"
-                                        aria-describedby="basic-default-email2" required />
+                                        aria-describedby="basic-default-email2" formControlName="email" required />
                                     <label for="basic-default-email"><i class="ri-mail-fill"></i> Email</label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-floating form-floating-outline mb-6">
                             <input type="text" id="basic-default-phone" class="form-control phone-mask"
-                                placeholder="Teacher number" required/>
+                                placeholder="Teacher number" formControlName="contact_no" required/>
                             <label for="basic-default-phone"><i class="ri-phone-fill ri-20px"></i> Phone No</label>
                         </div>
                         <div class="form-floating form-floating-outline mb-6">
                             <input type="text" id="teacher-biometric-no" class="form-control phone-mask"
-                                placeholder="Teacher number" required/>
+                                placeholder="Teacher number" formControlName="userid" required/>
                             <label for="basic-default-phone"><i class="ri-fingerprint-line"></i> Biometric
                                 Number</label>
                         </div>
@@ -56,7 +56,7 @@
                             placeholder="Teacher - Address"
                             aria-label="Teacher - Address"
                             aria-describedby="basic-icon-default-message2"
-                            style="height: 60px" required></textarea>
+                            style="height: 60px" formControlName="address" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </form>
